@@ -1,13 +1,49 @@
 import React, { useState } from "react";
+import AxiosInstance  from '../config/axiosInstance';
 import loginSignupImage from "../assest/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 
 
-function Signup() {
+const Signup:React.FC= ()=> {
+
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    // const [image, setImage] = useState<File | null>(null);
+
+    const signup = async ()=>{
+      try {
+          const response = await AxiosInstance.post('/users/register', {
+              firstName,lastName, email, password, confirmPassword, 
+          });
+  
+          console.log(response);
+          setFirstName('');
+          setLastName('');
+          setEmail('');
+          setPassword('');
+          setConfirmPassword('');
+          
+          
+      } catch (error) {
+          console.log(error);
+          
+          
+      }
+
+      
+      
+  }
  
-    const [showPassword, setShowPassword] = useState(false);
+
+
+  //see the password
+  const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleShowPassword = () => {
@@ -39,7 +75,9 @@ function Signup() {
             id="firstName"
             name="firstName"
             className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
-            
+            onChange={(e)=>{
+              setFirstName(e.target.value);
+            }}
           />
 
           <label htmlFor="lastName">Last Name</label>
@@ -48,6 +86,9 @@ function Signup() {
             id="lastName"
             name="lastName"
             className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            onChange={(e)=>{
+              setLastName(e.target.value);
+            }}
             
           />
 
@@ -57,6 +98,9 @@ function Signup() {
             id="email"
             name="email"
             className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            onChange={(e)=>{
+              setEmail(e.target.value);
+            }}
             
           />
 
@@ -67,6 +111,9 @@ function Signup() {
               id="password"
               name="password"
               className=" w-full bg-slate-200 border-none outline-none "
+              onChange={(e)=>{
+                setPassword(e.target.value);
+              }}
               
             />
             <span
@@ -84,6 +131,9 @@ function Signup() {
               id="confirmpassword"
               name="confirmPassword"
               className=" w-full bg-slate-200 border-none outline-none "
+              onChange={(e)=>{
+                setConfirmPassword(e.target.value);
+              }}
               
             />
             <span
@@ -94,7 +144,11 @@ function Signup() {
             </span>
           </div>
 
-          <button className="w-full max-w-[150px] m-auto  bg-red-500 hover:bg-red-600 cursor-pointer  text-white text-xl font-medium text-center py-1 rounded-full mt-4">
+          <button className="w-full max-w-[150px] m-auto  bg-red-500 hover:bg-red-600 cursor-pointer  text-white text-xl font-medium text-center py-1 rounded-full mt-4" 
+          onClick={(e)=>{
+            signup();
+          }}
+          >
             Sign up
           </button>
         </form>

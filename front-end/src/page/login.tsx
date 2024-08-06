@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import loginSignupImage from "../assest/login-animation.gif";
+import AxiosInstance  from '../config/axiosInstance';
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
@@ -7,9 +8,39 @@ import '../App.css'
 
 
 
-function Login() {
+const Login:React.FC= ()=> {
  
     const [showPassword, setShowPassword] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const login = async ()=>{
+        
+      try {
+          const response = await AxiosInstance.post('/v1/users/login', {
+             email, password
+          });
+  
+          const expirationDate = new Date();
+          expirationDate.setDate(expirationDate.getDate()+2);
+
+          const cookieValue=encodeURIComponent('token')+'='
+              +encodeURIComponent(response.data)+'; expires='+expirationDate.toUTCString()+'; path=/';
+          document.cookie = cookieValue;
+
+          console.log(response.data);
+          
+          setEmail('');
+          setPassword('');
+          
+      } catch (error) {
+          console.log(error);
+          
+          
+      }
+      
+  }
   
 
   const handleShowPassword = () => {
@@ -34,6 +65,9 @@ function Login() {
             type={"email"}
             id="email"
             name="email"
+            onChange={(e)=>{
+              setEmail(e.target.value);
+            }}
             className="px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300 text-black"
             
           />
@@ -44,6 +78,9 @@ function Login() {
               type={showPassword ? "text" : "password"}
               id="password"
               name="password"
+              onChange={(e)=>{
+                setPassword(e.target.value);
+              }}
               className=" w-full bg-slate-200 border-none outline-none "
               
             />
@@ -58,7 +95,11 @@ function Login() {
           
           
 
-          <button className="w-full max-w-[150px] m-auto  bg-red-500 hover:bg-red-600 cursor-pointer  text-white text-xl font-medium text-center py-1 rounded-full mt-4">
+          <button className="w-full max-w-[150px] m-auto  bg-red-500 hover:bg-red-600 cursor-pointer  text-white text-xl font-medium text-center py-1 rounded-full mt-4" 
+          onClick={(e)=>{
+            login();
+          }}
+          >
             Login
           </button>
         </form>
