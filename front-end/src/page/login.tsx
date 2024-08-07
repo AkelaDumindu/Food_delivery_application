@@ -18,7 +18,7 @@ const Login:React.FC= ()=> {
     const login = async ()=>{
         
       try {
-          const response = await AxiosInstance.post('/v1/users/login', {
+          const response = await AxiosInstance.post('/users/login', {
              email, password
           });
   

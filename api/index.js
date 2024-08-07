@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // const customerRoute = require('./route/customerRoute');
 const userRoute = require('./route/userRoute');
-// const productRoute = require('./route/productRoute');
+const productRoute = require('./route/productRoute');
 // const orderRoute = require('./route/orderRoute');
 
 const app = express();
@@ -38,9 +38,9 @@ app.get('/', (req, resp) => {
 });
 
 // Customer route
-app.use('/api/v1/customers', userRoute);
-// app.use('/api/v1/users', userRoute);
-// app.use('/api/v1/products', productRoute);
+// app.use('/api/v1/customers', userRoute);
+app.use('/api/v1/users', userRoute);
+app.use('/api/v1/products', productRoute);
 // app.use('/api/v1/orders', orderRoute);
 
 
