@@ -1,9 +1,129 @@
-import React from 'react'
- 
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import { BsCloudUpload } from 'react-icons/bs';
+import { ImagetoBase64 } from '../utility/imageToBase64';
+import AxiosInstance from '../config/axiosInstance';
 
-const NewProduct = ()=>{
-    return(
-        <div>Home</div>
-    )
+interface Product {
+  _id: string;
+  name: string;
+  category: string;
+  description: string;
+  image: string;
+  unitPrice: number;
 }
-export default NewProduct;
+
+const Product: React.FC = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [image, setImage] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [unitPrice, setUnitPrice] = useState<number | ''>('');
+  const [category, setCategory] = useState('');
+
+  const uploadImage = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+    if (!e.target.files) return;
+    const file = e.target.files[0];
+    const data = await ImagetoBase64(file);
+    setImage(data as string);
+  };
+
+  const saveProduct = async (e: FormEvent): Promise<void> => {
+    e.preventDefault();
+    try {
+      const response = await AxiosInstance.post('/products/save-product', {
+        name,
+        description,
+        category,
+        unitPrice,
+        image
+      });
+
+      // Add the new product to the products state
+      const newProduct: Product = response.data;
+      setProducts((prev) => [...prev, newProduct]);
+
+      // Reset form fields
+      setName('');
+      setDescription('');
+      setCategory('');
+      setUnitPrice('');
+      setImage(null);
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="p-4">
+      <form
+        className='m-auto w-full max-w-md shadow flex flex-col p-3 bg-white'
+        onSubmit={saveProduct}
+      >
+        <label htmlFor='name'>Name</label>
+        <input
+          type="text"
+          name="name"
+          className='bg-slate-200 p-1 my-1'
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+        />
+
+        <label htmlFor='category'>Category</label>
+        <select
+          className='bg-slate-200 p-1 my-1'
+          id='category'
+          name='category'
+          onChange={(e) => setCategory(e.target.value)}
+          value={category}
+        >
+          <option value="">Select category</option>
+          <option value="fruits">Fruits</option>
+          <option value="vegetable">Vegetable</option>
+          <option value="icecream">Icecream</option>
+          <option value="dosa">Dosa</option>
+          <option value="pizza">Pizza</option>
+          <option value="rice">Rice</option>
+          <option value="cake">Cake</option>
+          <option value="burger">Burger</option>
+          <option value="paneer">Paneer</option>
+          <option value="sandwich">Sandwich</option>
+        </select>
+
+        <label htmlFor='image'>Image</label>
+        <div className='h-40 w-full bg-slate-200 rounded flex items-center justify-center cursor-pointer'>
+          {image ? (
+            <img src={image} className="h-full" alt="Product" />
+          ) : (
+            <span className='text-5xl'><BsCloudUpload /></span>
+          )}
+          <input type="file" accept="image/*" id="image" onChange={uploadImage} className="hidden" />
+        </div>
+
+        <label htmlFor='price' className='my-1'>Price</label>
+        <input
+          type="text"
+          className='bg-slate-200 p-1 my-1'
+          name='price'
+          onChange={(e) => setUnitPrice(parseFloat(e.target.value))}
+          value={unitPrice}
+        />
+
+        <label htmlFor='description'>Description</label>
+        <textarea
+          rows={2}
+          value={description}
+          className='bg-slate-200 p-1 my-1 resize-none'
+          name='description'
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
+
+        <button type="submit" className='bg-red-500 hover:bg-red-600 text-white text-lg font-medium my-2 drop-shadow'>
+          Save
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Product;

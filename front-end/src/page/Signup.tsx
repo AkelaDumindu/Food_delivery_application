@@ -70,39 +70,48 @@ const Signup:React.FC= ()=> {
 
         <form className="w-full py-3 flex flex-col">
           <label htmlFor="firstName">First Name</label>
+          <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"text"}
             id="firstName"
             name="firstName"
-            className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            className="w-full bg-slate-200 border-none outline-none text-black"
             onChange={(e)=>{
               setFirstName(e.target.value);
             }}
           />
+          </div>
+          
 
           <label htmlFor="lastName">Last Name</label>
+          <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"text"}
             id="lastName"
             name="lastName"
-            className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            className="w-full bg-slate-200 border-none outline-none text-black"
             onChange={(e)=>{
               setLastName(e.target.value);
             }}
             
           />
+          </div>
+          
 
           <label htmlFor="email">Email</label>
+          <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"email"}
             id="email"
             name="email"
-            className="mt-1 mb-2 w-full bg-slate-200 px-2 py-1 rounded focus-within:outline-blue-300"
+            className="w-full bg-slate-200 border-none outline-none text-black"
             onChange={(e)=>{
               setEmail(e.target.value);
             }}
             
           />
+          </div>
+          
 
           <label htmlFor="password">Password</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
@@ -110,14 +119,14 @@ const Signup:React.FC= ()=> {
               type={showPassword ? "text" : "password"}
               id="password"
               name="password"
-              className=" w-full bg-slate-200 border-none outline-none "
+              className=" w-full bg-slate-200 border-none outline-none text-black"
               onChange={(e)=>{
                 setPassword(e.target.value);
               }}
               
             />
             <span
-              className="flex text-xl cursor-pointer"
+              className="flex text-xl cursor-pointer text-black"
               onClick={handleShowPassword}
             >
               {showPassword ? <BiShow /> : <BiHide />}
@@ -130,14 +139,14 @@ const Signup:React.FC= ()=> {
               type={showConfirmPassword ? "text" : "password"}
               id="confirmpassword"
               name="confirmPassword"
-              className=" w-full bg-slate-200 border-none outline-none "
+              className=" w-full bg-slate-200 border-none outline-none text-black"
               onChange={(e)=>{
                 setConfirmPassword(e.target.value);
               }}
               
             />
             <span
-              className="flex text-xl cursor-pointer"
+              className="flex text-xl cursor-pointer text-black"
               onClick={handleShowConfirmPassword}
             >
               {showConfirmPassword ? <BiShow /> : <BiHide />}
