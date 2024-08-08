@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import './App.css'
+import './App.css';
 import { useState } from 'react';
 import Home from "./page/home";
 import Contact from "./page/contact";
@@ -17,12 +17,12 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container container-fluid">
       <Router>
         <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
           {/* desktop */}
           <div className="flex items-center h-full justify-between">
-            <Link to={""}>
+            <Link to="/">
               <div className="h-10">
                 <img src="" alt="Logo" className="h-full" />
               </div>
@@ -60,21 +60,20 @@ function App() {
               </div>
             </div>
           </div>
-
-          <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/newproduct" element={<NewProduct />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/menu" element={<Menu />} />
-        </Routes>
         </header>
-        {/* Apply the background color to the main element */}
-        
 
-        
+        {/* Main content area, outside of the header */}
+        <main className="pt-16 min-h-screen">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/newproduct" element={<NewProduct />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/menu" element={<Menu />} />
+          </Routes>
+        </main>
       </Router>
     </div>
   );
