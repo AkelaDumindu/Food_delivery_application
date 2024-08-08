@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { BsCloudUpload } from 'react-icons/bs';
 import { ImagetoBase64 } from '../utility/imageToBase64';
 import axios, { Axios } from 'axios';
-// import AxiosInstance from '../config/axiosInstance';
+import AxiosInstance from '../config/axiosInstance';
 
 interface Product {
   _id: string;
@@ -31,7 +31,8 @@ const Product: React.FC = () => {
   const saveProduct = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/products/save-product', {
+      // const response = await axios.post('http://localhost:3000/api/v1/products/save-product', {
+        const response = await AxiosInstance.post('/products/save-product', {
         name,
         description,
         category,
