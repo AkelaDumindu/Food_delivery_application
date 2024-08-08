@@ -7,7 +7,7 @@ const createProduct=(req,resp)=>{
         description:req.body.description,
         image:req.body.image,
         unitPrice:req.body.unitPrice,
-        qtyOnHand:req.body.qtyOnHand
+        category:req.body.category
     });
     product.save().then(response=>{
         resp.status(201).json({'message':'Product saved!'});
@@ -30,7 +30,7 @@ const updateProduct=async (req,resp)=>{
             description:req.body.description,
             image:req.body.image,
             unitPrice:req.body.unitPrice,
-            qtyOnHand:req.body.qtyOnHand
+            category:req.body.category
         }
     },{new:true});
 
@@ -80,6 +80,28 @@ const findAllProduct = (req, resp) => {
         });
 };
 
+
+
+// const findAllMin = (req, resp) => {
+//     Product.find({ qtyOnHand: { $lt: 10 } })
+//         .then(data => {
+//             return resp.status(200).json(data);
+//         })
+//         .catch(error => {
+//             return resp.status(500).json({ 'message': 'internal server error' });
+//         });
+// };
+
+// const findAllCount=(req,resp)=>{
+//     try{
+//         Product.countDocuments().then(data=>{
+//             return resp.status(200).json(data);
+//         })
+
+//     }catch (error){
+//         return resp.status(500).json({'message':'internal server error'});
+//     }
+// }
 
 module.exports = {
     createProduct,

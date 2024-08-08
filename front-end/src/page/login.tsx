@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import loginSignupImage from "../assest/login-animation.gif";
-import AxiosInstance  from '../config/axiosInstance';
+// import AxiosInstance  from '../config/axiosInstance';
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 import '../App.css'
+import axios from "axios";
 
 
 
@@ -18,7 +19,7 @@ const Login:React.FC= ()=> {
     const login = async ()=>{
         
       try {
-          const response = await AxiosInstance.post('/users/login', {
+          const response = await axios.post('/users/login', {
              email, password
           });
   

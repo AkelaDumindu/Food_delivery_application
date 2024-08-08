@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import AxiosInstance  from '../config/axiosInstance';
+// import AxiosInstance  from '../config/axiosInstance';
 import loginSignupImage from "../assest/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
+import axios from "axios";
 
 
 const Signup:React.FC= ()=> {
@@ -18,7 +19,7 @@ const Signup:React.FC= ()=> {
 
     const signup = async ()=>{
       try {
-          const response = await AxiosInstance.post('/users/register', {
+          const response = await axios.post('/users/register', {
               firstName,lastName, email, password, confirmPassword, 
           });
   

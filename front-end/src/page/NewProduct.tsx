@@ -1,7 +1,8 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { BsCloudUpload } from 'react-icons/bs';
 import { ImagetoBase64 } from '../utility/imageToBase64';
-import AxiosInstance from '../config/axiosInstance';
+import axios, { Axios } from 'axios';
+// import AxiosInstance from '../config/axiosInstance';
 
 interface Product {
   _id: string;
@@ -30,7 +31,7 @@ const Product: React.FC = () => {
   const saveProduct = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
     try {
-      const response = await AxiosInstance.post('/products/save-product', {
+      const response = await axios.post('http://localhost:3000/api/v1/products/save-product', {
         name,
         description,
         category,
@@ -60,18 +61,18 @@ const Product: React.FC = () => {
         className='m-auto w-full max-w-md shadow flex flex-col p-3 bg-white'
         onSubmit={saveProduct}
       >
-        <label htmlFor='name'>Name</label>
+        <label htmlFor='name' className='my-1 text-black'>Name</label>
         <input
           type="text"
           name="name"
-          className='bg-slate-200 p-1 my-1'
+          className='bg-slate-200 p-1 my-1 text-black'
           onChange={(e) => setName(e.target.value)}
           value={name}
         />
 
-        <label htmlFor='category'>Category</label>
+        <label htmlFor='category' className='my-1 text-black'>Category</label>
         <select
-          className='bg-slate-200 p-1 my-1'
+          className='bg-slate-200 p-1 my-1 text-black'
           id='category'
           name='category'
           onChange={(e) => setCategory(e.target.value)}
@@ -90,7 +91,7 @@ const Product: React.FC = () => {
           <option value="sandwich">Sandwich</option>
         </select>
 
-        <label htmlFor='image'>Image</label>
+        <label htmlFor='image' className='my-1 text-black'>Image
         <div className='h-40 w-full bg-slate-200 rounded flex items-center justify-center cursor-pointer'>
           {image ? (
             <img src={image} className="h-full" alt="Product" />
@@ -99,21 +100,22 @@ const Product: React.FC = () => {
           )}
           <input type="file" accept="image/*" id="image" onChange={uploadImage} className="hidden" />
         </div>
+        </label>
 
-        <label htmlFor='price' className='my-1'>Price</label>
+        <label htmlFor='price' className='my-1 text-black'>Price</label>
         <input
           type="text"
-          className='bg-slate-200 p-1 my-1'
+          className='bg-slate-200 p-1 my-1 text-black'
           name='price'
           onChange={(e) => setUnitPrice(parseFloat(e.target.value))}
           value={unitPrice}
         />
 
-        <label htmlFor='description'>Description</label>
+        <label htmlFor='description' className='my-1 text-black'>Description</label>
         <textarea
           rows={2}
           value={description}
-          className='bg-slate-200 p-1 my-1 resize-none'
+          className='bg-slate-200 p-1 my-1 resize-none text-black'
           name='description'
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>

@@ -15,11 +15,9 @@ const port = process.env.SERVER_PORT || 3000;
 
 
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
-// parse application/json
-app.use(bodyParser.json());
+// Increase payload size limit
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb' }));
+app.use(bodyParser.json({ limit: '10mb' }));
 
 // Connect to MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/resturant_delivery')
