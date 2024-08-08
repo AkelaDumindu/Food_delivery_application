@@ -20,6 +20,8 @@ const Product: React.FC = () => {
   const [description, setDescription] = useState('');
   const [unitPrice, setUnitPrice] = useState<number | ''>('');
   const [category, setCategory] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   const uploadImage = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (!e.target.files) return;
@@ -28,8 +30,19 @@ const Product: React.FC = () => {
     setImage(data as string);
   };
 
+
+  
+
   const saveProduct = async (e: FormEvent): Promise<void> => {
     e.preventDefault();
+
+     // Form validation
+     if (!name || !category || !unitPrice) {
+      setErrorMessage('Please fill in all required fields.');
+      return;
+    }
+
+
     try {
       // const response = await axios.post('http://localhost:3000/api/v1/products/save-product', {
         const response = await AxiosInstance.post('/products/save-product', {
@@ -50,6 +63,8 @@ const Product: React.FC = () => {
       setCategory('');
       setUnitPrice('');
       setImage(null);
+      setErrorMessage('');
+      setSuccessMessage('Product uploaded successfully!');
 
     } catch (error) {
       console.log(error);
@@ -62,6 +77,8 @@ const Product: React.FC = () => {
         className='m-auto w-full max-w-md shadow flex flex-col p-3 bg-white'
         onSubmit={saveProduct}
       >
+        {errorMessage && <div className="text-red-500 mb-2">{errorMessage}</div>}
+        {successMessage && <div className="text-green-500 mb-2">{successMessage}</div>}
         <label htmlFor='name' className='my-1 text-black'>Name</label>
         <input
           type="text"
