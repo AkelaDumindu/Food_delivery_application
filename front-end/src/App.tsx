@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <div className="app-container container-fluid">
+    <div className="app-container">
       <Router>
         <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
           {/* desktop */}
@@ -31,7 +31,7 @@ function App() {
             <div className="flex items-center gap-4 md:gap-7">
               <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
                 <Link to="/">Home</Link>
-                <Link to="/menu">Menu</Link>
+                <Link to="/menu/66b479c7feb597c604dba5e5">Menu</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>
               </nav>
@@ -71,7 +71,7 @@ function App() {
             <Route path="/newproduct" element={<NewProduct />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/menu" element={<Menu />} />
+            <Route path="/menu/:id" element={<Menu />} />
           </Routes>
         </main>
       </Router>

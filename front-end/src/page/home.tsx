@@ -79,7 +79,7 @@ const Home: React.FC = () => {
             .slice(0, 4)
             .map((product, index) => (
               <HomeCard
-                key={index}
+                key={product._id}
                 name={product.name}
                 description={product.description}
                 category={product.category}
