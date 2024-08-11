@@ -8,6 +8,8 @@ import NewProduct from "./page/NewProduct";
 import Login from "./page/login";
 import Signup from "./page/Signup";
 import Menu from "./page/menu";
+import { BsCartFill } from "react-icons/bs";
+import Cart from "./page/cart";
 
 function App() {
   const [showMenu, setShowMenu] = useState(false);
@@ -36,7 +38,9 @@ function App() {
                 <Link to="/contact">Contact</Link>
               </nav>
               <div className="text-2xl text-slate-600 relative">
-                <Link to="cart">
+                <Link to="/cart">
+                <BsCartFill />
+
                   <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center"></div>
                 </Link>
               </div>
@@ -72,6 +76,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/menu/:id" element={<Menu />} />
+            <Route path="/cart" element={<Cart />} />
           </Routes>
         </main>
       </Router>

@@ -26,7 +26,7 @@ function HomeCard(props:HomeCardData){
               </h3>
               <p className="text-center text-slate-500  font-medium">{props.category}</p>
               <p className="text-center font-bold">
-                <span className="text-red-500">₹</span>
+                <span className="text-red-500">RS:</span>
                 <span>{props.price}</span>
               </p>
               </Link>

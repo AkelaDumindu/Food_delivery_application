@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 interface CardFeatureProps {
   image?: string;
   name?: string;
-  price?: number;
+  unitPrice?: number;
   category?: string;
   id?: string;
 }
@@ -15,7 +15,7 @@ const CartContext = React.createContext({
   addCartItem: (item: any) => {},
 });
 
-function CardFeature({ image, name, price, category, id }: CardFeatureProps) {
+function CardFeature({ image, name, unitPrice, category, id }: CardFeatureProps) {
   const { addCartItem } = useContext(CartContext); // Use the CartContext
 
 //   const handleAddCartProduct = () => {
@@ -44,8 +44,8 @@ function CardFeature({ image, name, price, category, id }: CardFeatureProps) {
         </h3>
         <p className="text-slate-500 font-medium">{category}</p>
         <p className="font-bold">
-          <span className="text-red-500">₹</span>
-          <span>{price}</span>
+          <span className="text-red-500">RS:</span>
+          <span className="text-black">{unitPrice}</span>
         </p>
       </Link>
       <button

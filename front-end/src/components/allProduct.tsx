@@ -77,7 +77,7 @@ const AllProduct: React.FC<AllProductProps> = ({ heading }) => {
               image={el.image}
               name={el.name}
               category={el.category}
-              price={el.price}
+              unitPrice={el.price}
             />
           ))
         ) : (
