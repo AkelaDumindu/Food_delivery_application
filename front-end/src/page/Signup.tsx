@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 // import AxiosInstance  from '../config/axiosInstance';
 import loginSignupImage from "../assest/login-animation.gif";
 import { BiShow, BiHide } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom";
 import { BsEmojiSmileUpsideDown } from "react-icons/bs";
 import axios from "axios";
+import { ImagetoBase64 } from "../utility/imageToBase64";
 
 
 const Signup:React.FC= ()=> {
@@ -15,12 +16,22 @@ const Signup:React.FC= ()=> {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    // const [image, setImage] = useState<File | null>(null);
+    const [image, setImage] = useState<string | null>(null);
+
+    const uploadImage = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
+      if (!e.target.files) return;
+      const file = e.target.files[0];
+      const data = await ImagetoBase64(file);
+      setImage(data as string);
+    };
+  
 
     const signup = async ()=>{
+      
+      
       try {
           const response = await axios.post('/users/register', {
-              firstName,lastName, email, password, confirmPassword, 
+              firstName,lastName, email, password, confirmPassword, image
           });
   
           console.log(response);
@@ -29,6 +40,7 @@ const Signup:React.FC= ()=> {
           setEmail('');
           setPassword('');
           setConfirmPassword('');
+          setImage(null);
           
           
       } catch (error) {
@@ -65,12 +77,12 @@ const Signup:React.FC= ()=> {
             <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">
               <p className="text-sm p-1 text-white">Upload</p>
             </div>
-            <input type={"file"} id="profileImage" accept="image/*" className="hidden" />
+            <input type={"file"} id="profileImage" onChange={uploadImage} accept="image/*" className="hidden" />
           </label>
         </div>
 
         <form className="w-full py-3 flex flex-col">
-          <label htmlFor="firstName">First Name</label>
+          <label htmlFor="firstName" className="text-black">First Name</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"text"}
@@ -84,7 +96,7 @@ const Signup:React.FC= ()=> {
           </div>
           
 
-          <label htmlFor="lastName">Last Name</label>
+          <label htmlFor="lastName" className="text-black">Last Name</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"text"}
@@ -99,7 +111,7 @@ const Signup:React.FC= ()=> {
           </div>
           
 
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" className="text-black">Email</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
           <input
             type={"email"}
@@ -114,7 +126,7 @@ const Signup:React.FC= ()=> {
           </div>
           
 
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className="text-black">Password</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2 focus-within:outline focus-within:outline-blue-300">
             <input
               type={showPassword ? "text" : "password"}
@@ -134,7 +146,7 @@ const Signup:React.FC= ()=> {
             </span>
           </div>
 
-          <label htmlFor="confirmpassword">Confirm Password</label>
+          <label htmlFor="confirmpassword" className="text-black">Confirm Password</label>
           <div className="flex px-2 py-1 bg-slate-200 rounded mt-1 mb-2  focus-within:outline focus-within:outline-blue-300">
             <input
               type={showConfirmPassword ? "text" : "password"}

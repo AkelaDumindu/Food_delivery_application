@@ -26,7 +26,7 @@ function App() {
           <div className="flex items-center h-full justify-between">
             <Link to="/">
               <div className="h-10">
-                <img src="" alt="Logo" className="h-full" />
+                <img src="./assest/logo2.png" alt="Logo" className="h-full" />
               </div>
             </Link>
 
