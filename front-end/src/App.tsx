@@ -172,7 +172,63 @@ function App() {
         </main>
 
 
-        
+        <footer className="bg-gray-100 border-t border-gray-200 py-10">
+  <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <div>
+      <h3 className="font-semibold text-lg text-gray-800 mb-4">The Good Batch</h3>
+      <p className="text-gray-600">
+        956 Fulton Street <br />
+        Brooklyn, New York 11238
+      </p>
+      <p className="text-gray-600 mt-2">
+        Contact Us: <a href="tel:7186224000" className="text-blue-600">718.622.4000</a>
+      </p>
+    </div>
+
+    
+    <div>
+      <h3 className="font-semibold text-lg text-gray-800 mb-4">Join our Mailing List</h3>
+      <form action="#" className="flex flex-col gap-4">
+        <input
+          type="email"
+          placeholder="Email address"
+          className="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-600 focus:outline-none"
+        />
+        <button
+          type="submit"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+        >
+          SIGN UP
+        </button>
+      </form>
+    </div>
+
+    
+    <div>
+      <h3 className="font-semibold text-lg text-gray-800 mb-4">Follow Us</h3>
+      <div className="flex items-center gap-4">
+        <a href="#" className="text-gray-500 hover:text-blue-600 transition duration-300">
+          <i className="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" className="text-gray-500 hover:text-blue-600 transition duration-300">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="#" className="text-gray-500 hover:text-blue-600 transition duration-300">
+          <i className="fab fa-instagram"></i>
+        </a>
+        <a href="#" className="text-gray-500 hover:text-blue-600 transition duration-300">
+          <i className="fab fa-pinterest"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+ 
+  <div className="border-t border-gray-300 mt-10 pt-4 text-center text-sm text-gray-500">
+    &copy; 2024 The Good Batch | Privacy Policy | Site by [YourName]
+  </div>
+</footer>
 
       </Router>
     </div>
