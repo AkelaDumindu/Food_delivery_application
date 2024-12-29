@@ -21,50 +21,141 @@ function App() {
   return (
     <div className="app-container">
       <Router>
-        <header className="fixed shadow-md w-full h-16 px-2 md:px-4 z-50 bg-white">
-          {/* desktop */}
-          <div className="flex items-center h-full justify-between">
-            <Link to="/">
-              <div className="h-10">
-                <img src="./assest/logo2.png" alt="Logo" className="h-full" />
-              </div>
+      <header className="fixed shadow-md w-full h-16 px-4 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
+  {/* Desktop Navigation */}
+  <div className="flex items-center h-full justify-between max-w-7xl mx-auto">
+    {/* Logo */}
+    <Link to="/">
+      <div className="h-10 flex items-center">
+        <img src="./assest/logo2.png" alt="Logo" className="h-full" />
+        <span className="ml-2 font-bold text-lg">FoodieHub</span>
+      </div>
+    </Link>
+
+    {/* Nav Links */}
+    <nav className="hidden md:flex items-center gap-6 font-medium">
+      <Link
+        to="/"
+        className="hover:text-yellow-300 transition duration-300 ease-in-out"
+      >
+        Home
+      </Link>
+      <Link
+        to="/menu/66b479c7feb597c604dba5e5"
+        className="hover:text-yellow-300 transition duration-300 ease-in-out"
+      >
+        Menu
+      </Link>
+      <Link
+        to="/about"
+        className="hover:text-yellow-300 transition duration-300 ease-in-out"
+      >
+        About
+      </Link>
+      <Link
+        to="/contact"
+        className="hover:text-yellow-300 transition duration-300 ease-in-out"
+      >
+        Contact
+      </Link>
+    </nav>
+
+    {/* Icons and Avatar */}
+    <div className="flex items-center gap-4">
+      {/* Cart Icon */}
+      <div className="relative">
+        <Link to="/cart" className="text-2xl">
+          <BsCartFill />
+        </Link>
+        <div className="absolute -top-1 -right-1 bg-red-500 text-xs text-white h-4 w-4 flex items-center justify-center rounded-full">
+          3
+        </div>
+      </div>
+
+      {/* User Avatar */}
+      <div className="relative">
+        <div
+          className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden cursor-pointer"
+          onClick={handleShowMenu}
+        >
+          <img src="./assest/avatar.png" alt="User Avatar" />
+        </div>
+        {showMenu && (
+          <div className="absolute right-0 mt-2 bg-white text-black shadow-md rounded-lg py-2 w-40">
+            <Link
+              to="/newproduct"
+              className="block px-4 py-2 hover:bg-gray-200 transition"
+            >
+              New Product
             </Link>
-
-            <div className="flex items-center gap-4 md:gap-7">
-              <nav className="gap-4 md:gap-6 text-base md:text-lg hidden md:flex">
-                <Link to="/">Home</Link>
-                <Link to="/menu/66b479c7feb597c604dba5e5">Menu</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
-              </nav>
-              <div className="text-2xl text-slate-600 relative">
-                <Link to="/cart">
-                <BsCartFill />
-
-                  <div className="absolute -top-1 -right-1 text-white bg-red-500 h-4 w-4 rounded-full m-0 p-0 text-sm text-center"></div>
-                </Link>
-              </div>
-              <div className="text-slate-600" onClick={handleShowMenu}>
-                <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
-                  {/* Add your avatar image here */}
-                  <img src="" alt="User Avatar" className="h-full w-full" />
-                </div>
-                {showMenu && (
-                  <div className="absolute right-2 bg-white py-2 shadow drop-shadow-md flex flex-col min-w-[120px] text-center">
-                    <Link to="/newproduct" className="whitespace-nowrap cursor-pointer px-2">New product</Link>
-                    <Link to="/login" className="whitespace-nowrap cursor-pointer px-2">Login</Link>
-                    <nav className="text-base md:text-lg flex flex-col md:hidden">
-                      <Link to="/" className="px-2 py-1">Home</Link>
-                      <Link to="/menu" className="px-2 py-1">Menu</Link>
-                      <Link to="/about" className="px-2 py-1">About</Link>
-                      <Link to="/contact" className="px-2 py-1">Contact</Link>
-                    </nav>
-                  </div>
-                )}
-              </div>
-            </div>
+            <Link
+              to="/login"
+              className="block px-4 py-2 hover:bg-gray-200 transition"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="block px-4 py-2 hover:bg-gray-200 transition"
+            >
+              Signup
+            </Link>
           </div>
-        </header>
+        )}
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile Navigation */}
+  <div className="md:hidden">
+    <div className="flex justify-between items-center">
+      <Link to="/">
+        <img src="./assest/logo2.png" alt="Logo" className="h-10" />
+      </Link>
+      <button
+        className="text-3xl text-white"
+        onClick={() => setShowMenu(!showMenu)}
+      >
+        ☰
+      </button>
+    </div>
+    {showMenu && (
+      <nav className="bg-blue-600 text-white p-4 flex flex-col space-y-2 mt-2">
+        <Link
+          to="/"
+          className="hover:bg-blue-700 p-2 rounded transition duration-300"
+        >
+          Home
+        </Link>
+        <Link
+          to="/menu/66b479c7feb597c604dba5e5"
+          className="hover:bg-blue-700 p-2 rounded transition duration-300"
+        >
+          Menu
+        </Link>
+        <Link
+          to="/about"
+          className="hover:bg-blue-700 p-2 rounded transition duration-300"
+        >
+          About
+        </Link>
+        <Link
+          to="/contact"
+          className="hover:bg-blue-700 p-2 rounded transition duration-300"
+        >
+          Contact
+        </Link>
+        <Link
+          to="/cart"
+          className="hover:bg-blue-700 p-2 rounded transition duration-300"
+        >
+          Cart
+        </Link>
+      </nav>
+    )}
+  </div>
+</header>
+
 
         {/* Main content area, outside of the header */}
         <main className="pt-16 min-h-screen">
@@ -79,6 +170,10 @@ function App() {
             <Route path="/cart" element={<Cart />} />
           </Routes>
         </main>
+
+
+        
+
       </Router>
     </div>
   );
