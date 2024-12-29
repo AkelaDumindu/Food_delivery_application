@@ -54,7 +54,7 @@ const AllProduct: React.FC<AllProductProps> = ({ heading }) => {
   };
 
   return (
-    <div className="my-5">
+    <div className="my-5 p-24 pt-0 pb-0">
       <h2 className="font-bold text-3xl text-slate-800 mb-8 mt-8">{heading}</h2>
 
       <div className="flex gap-4 justify-center overflow-scroll scrollbar-none text-black ">
