@@ -12,12 +12,22 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/users/login', { email, password });
 
+      // Assuming the response contains user data with a role
+      const { role } = response.data.user;
+
       // Clear the form after successful login
       setEmail('');
       setPassword('');
 
-      // Redirect to homepage or another page
-      navigate('/');
+      // Check if the user is an admin
+      if (role === "admin") {
+        // Redirect to the new product page if the user is an admin
+        navigate('/newproduct');
+      } else {
+        // Redirect to the homepage or another page
+        navigate('/');
+      }
+
     } catch (error) {
       console.error("Login failed:", error);
       // Handle the error with an appropriate message or UI feedback
