@@ -97,16 +97,16 @@ const Product: React.FC = () => {
           value={category}
         >
           <option value="">Select category</option>
-          <option value="fruits">Fruits</option>
-          <option value="vegetable">Vegetable</option>
-          <option value="icecream">Icecream</option>
-          <option value="dosa">Dosa</option>
-          <option value="pizza">Pizza</option>
-          <option value="rice">Rice</option>
-          <option value="cake">Cake</option>
+          <option value="fresh vegetable">Fresh Vegetable</option>
+          <option value="vegetable">Fresh Fruits</option>
+          <option value="green">Green & Herbs</option>
+          <option value="organic">Organic Vegetables and Fruits</option>
+          <option value="exotic">Exotic Fruits & Vegetables</option>
+          <option value="juice">Juices & Smoothie Ingredients</option>
+          {/* <option value="cake">Cake</option>
           <option value="burger">Burger</option>
           <option value="paneer">Paneer</option>
-          <option value="sandwich">Sandwich</option>
+          <option value="sandwich">Sandwich</option> */}
         </select>
 
         <label htmlFor='image' className='my-1 text-black'>Image
