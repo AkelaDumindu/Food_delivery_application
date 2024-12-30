@@ -6,18 +6,23 @@ const instance:AxiosInstance =axios.create({
 });
 
 instance.interceptors.request.use(
-    (config)=>{
-
-        let token = document.cookie.split('; ')
-            .find(record=>record.startsWith('token='));
-        token = token?.split('=')[1];
-        config.headers.Authorization=token;
-        
-
-        return config;
-    },(error)=>{
-        return Promise.reject(error)
+    (config) => {
+      let token = document.cookie.split('; ').find(record => record.startsWith('token='));
+      token = token?.split('=')[1];
+      
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        // Handle token absence, possibly by redirecting to login
+        console.log("Token is missing");
+      }
+  
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
     }
-);
+  );
+  
 
 export default instance;
