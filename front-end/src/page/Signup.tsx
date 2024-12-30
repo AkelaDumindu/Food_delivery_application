@@ -42,7 +42,7 @@ const Signup: React.FC = () => {
       // window.location.href = "/login";
     } catch (error) {
       console.log(error);
-      // Handle the error with an appropriate message or UI feedback
+      
     }
   };
 
