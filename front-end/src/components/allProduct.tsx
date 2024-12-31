@@ -9,7 +9,7 @@ interface Product {
   name: string;
   category: string;
   image: string;
-  price: number;
+  unitPrice: number;
 }
 
 interface AllProductProps {
@@ -77,7 +77,7 @@ const AllProduct: React.FC<AllProductProps> = ({ heading }) => {
               image={el.image}
               name={el.name}
               category={el.category}
-              unitPrice={el.price}
+              unitPrice={el.unitPrice}
             />
           ))
         ) : (

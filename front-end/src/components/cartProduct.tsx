@@ -38,7 +38,7 @@ const CartProduct: React.FC<CartProductProps> = ({ id, name, image, category, qt
         <p className="text-slate-500 font-medium">{category}</p>
         <p className="font-bold text-base">
           <span className="text-red-500">RS:</span>
-          <span>{price}</span>
+          <span  className="text-black">{price}</span>
         </p>
         <div className="flex justify-between">
           <div className="flex gap-3 items-center">
@@ -58,7 +58,7 @@ const CartProduct: React.FC<CartProductProps> = ({ id, name, image, category, qt
           </div>
           <div className="flex items-center gap-2 font-bold text-slate-700">
             <p>Total :</p>
-            <p>
+            <p  className="text-black">
               <span className="text-red-500">RS:</span>{total}
             </p>
           </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import AxiosInstance from '../config/axiosInstance';
 import AllProduct from '../components/allProduct';
@@ -19,6 +19,7 @@ const Menu: React.FC = () => {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     findProduct();
@@ -37,6 +38,7 @@ const Menu: React.FC = () => {
     if (product) {
       dispatch(addCartItem(product));
       toast.success('Item added to cart successfully');
+      navigate("/cart");
     } else {
       toast.error('Failed to add item to cart');
     }
