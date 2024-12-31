@@ -4,6 +4,7 @@ import AxiosInstance from "../config/axiosInstance";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import AllProduct from "../components/allProduct";
 import HomeCard from "../components/homeCard";
+import { TiThSmallOutline } from "react-icons/ti";
 
 interface Product {
   _id: string;
@@ -45,11 +46,10 @@ const Home: React.FC = () => {
       <div className="banner">
         <div className="banner-text">
           <h1 className="banner-title">
-            Delicious Food <span>Delivered to Your Doorstep</span>
+          Farm-Fresh Goodness <span>Right at Your Doorstep!</span>
           </h1>
           <p className="banner-description">
-            Experience the best food delivery service with our wide selection of
-            restaurants and fresh, hot meals delivered to your location.
+          Savor the taste of nature with our handpicked, farm-fresh vegetables delivered straight to your home. From lush farms to your kitchen, we ensure the freshest, highest-quality produce packed with flavor and nutrition. Whether you're cooking a family dinner or whipping up a quick snack, our vegetables are here to elevate every dish. Enjoy seasonal favorites, locally sourced varieties, and organic options—all with just a few clicks. Eat fresh, live healthy—one doorstep at a time
           </p>
           <div className="search-bar">
             <input
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         >
           {products
             .filter(
-              (product) => product.category.toLowerCase() === "vegetable"
+              (product) => product.category.toLowerCase() === "fresh vegetable"
             )
             .map((product) => (
               <HomeCard
