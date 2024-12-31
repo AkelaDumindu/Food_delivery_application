@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 import Home from "./page/home";
 import Contact from "./page/contact";
 import About from "./page/about";
@@ -18,6 +19,12 @@ function App() {
     setShowMenu((prev) => !prev);
   };
 
+  const productCartItem = useSelector((state: any) => state.cart.cartItem);
+  const totalCartCount = productCartItem.reduce(
+    (acc: number, item: any) => acc + item.qty,
+    0
+  );
+
   return (
     <div className="app-container">
       <Router>
@@ -27,8 +34,8 @@ function App() {
     {/* Logo */}
     <Link to="/">
       <div className="h-10 flex items-center">
-        <img src="./assest/logo2.png" alt="Logo" className="h-full" />
-        <span className="ml-2 font-bold text-lg">FoodieHub</span>
+        <img src="../images/vegesaga.png" alt="Logo" className="h-full" />
+        <span className="ml-2 font-bold text-lg">VEGESAGA</span>
       </div>
     </Link>
 
@@ -41,7 +48,7 @@ function App() {
         Home
       </Link>
       <Link
-        to="/menu/66b479c7feb597c604dba5e5"
+        to="/menu/6773226b403167f41bd18834"
         className="hover:text-yellow-300 transition duration-300 ease-in-out"
       >
         Menu
@@ -68,7 +75,7 @@ function App() {
           <BsCartFill />
         </Link>
         <div className="absolute -top-1 -right-1 bg-red-500 text-xs text-white h-4 w-4 flex items-center justify-center rounded-full">
-          3
+        {totalCartCount}
         </div>
       </div>
 
@@ -128,7 +135,7 @@ function App() {
           Home
         </Link>
         <Link
-          to="/menu/66b479c7feb597c604dba5e5"
+          to="/menu/6773226b403167f41bd18834"
           className="hover:bg-blue-700 p-2 rounded transition duration-300"
         >
           Menu
