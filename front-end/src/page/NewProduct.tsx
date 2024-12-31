@@ -98,7 +98,7 @@ const Product: React.FC = () => {
         >
           <option value="">Select category</option>
           <option value="fresh vegetable">Fresh Vegetable</option>
-          <option value="vegetable">Fresh Fruits</option>
+          <option value="fruits">Fresh Fruits</option>
           <option value="green">Green & Herbs</option>
           <option value="organic">Organic Vegetables and Fruits</option>
           <option value="exotic">Exotic Fruits & Vegetables</option>
