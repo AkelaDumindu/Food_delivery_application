@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,  useNavigate} from "react-router-dom";
 import { ImagetoBase64 } from "../utility/imageToBase64";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ const Signup: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const uploadImage = async (e: ChangeEvent<HTMLInputElement>): Promise<void> => {
     if (!e.target.files) return;
@@ -31,15 +32,18 @@ const Signup: React.FC = () => {
 
       console.log(response);
 
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setImage(null);
+         // Clear input fields only after successful signup
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+    setImage(null);
 
-      // Redirect to login page (optional)
-      // window.location.href = "/login";
+    // Optionally, redirect to login or show success message
+    alert('Signup successful! You can now log in.');
+    navigate("/login")
+    
     } catch (error) {
       console.log(error);
       
